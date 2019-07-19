@@ -6,7 +6,7 @@ mongoose.connect('mongodb+srv://databaseUser:devilek123@cluster0-hegcg.mongodb.n
   useNewUrlParser: true
 });
 
-//new user Schema
+//new user Schema 
 const userSchema = new Schema({
     name: String,
     username: { type: String, required: true, unique: true },
