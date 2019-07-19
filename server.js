@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const express = require('express');
+const app = express();
+const bodyParser = require("body-parser");
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://ktostam:YsMcEwlPTSUraF5e@cluster0-hegcg.mongodb.net/test?retryWrites=true&w=majority', {
@@ -157,3 +160,13 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
     .then(findKennyAndDelete)
     .then(findBennyAndRemove)
     .catch(console.log.bind(console));
+
+app.use(express.static(__dirname + '/public'));
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
+const port = process.env.PORT || 8080;
+const server = app.listen(port, function() {
+  console.log(`Przykładowa aplikacja nasłuchuje na http://localhost:${port}`);
+});
